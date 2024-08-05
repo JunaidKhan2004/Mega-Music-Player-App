@@ -1,0 +1,22 @@
+{
+    "flutter": {
+        "platforms": {
+            "android": {
+                "default": {
+                    "projectId": "mega-music-player-app",
+                    "appId": "1:107211404763:android:fc8fce60d5acd30782e3fe",
+                    "fileOutput": "android/app/google-services.json"
+                }
+            },
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "projectId": "mega-music-player-app",
+                    "configurations": {
+                        "android": "1:107211404763:android:fc8fce60d5acd30782e3fe",
+                        "ios": "1:107211404763:ios:531a15ef9d1bc0f282e3fe"
+                    }
+                }
+            }
+        }
+    }
+}

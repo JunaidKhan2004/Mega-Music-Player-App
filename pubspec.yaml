@@ -1,0 +1,76 @@
+name: mega_music_player_app
+description: "A new Flutter project."
+publish_to: "none"
+version: 0.1.0
+
+environment:
+  sdk: ">=3.2.3 <4.0.0"
+
+dependencies:
+  awesome_drawer_bar: ^1.2.0
+  change_app_package_name: ^1.3.0
+  firebase_auth: ^4.17.8
+  firebase_core: ^2.27.0
+  firebase_storage: ^11.6.9
+  flutter:
+    sdk: flutter
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.3.10
+  google_fonts: ^6.2.0
+  just_audio: ^0.9.39
+  page_transition: ^2.1.0
+  provider: ^6.1.2
+  rename_app: ^1.6.1
+  transformable_list_view: ^0.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/icons/megaMusicPlayer_Icon.png
+  color_dark: "#121212"
+  image_dark: assets/icons/megaMusicPlayer_Icon.png
+
+  android_12:
+    image: assets/icons/megaMusicPlayer_Icon.png
+    icon_background_color: "#ffffff"
+    image_dark: assets/icons/megaMusicPlayer_Icon.png
+    icon_background_color_dark: "#121212"
+
+  web: false
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: assets/icons/megaMusicPlayer_appIcon.png
+  android_icon: true
+  ios_icon: true
+  remove_alpha_ios: true # Optional: Removes alpha channel for iOS icons
+  adaptive_icon_background: "#ffffff" # Background color for adaptive icons on Android
+  adaptive_icon_foreground: assets/icons/megaMusicPlayer_appIcon.png
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/icons/
+    - assets/images/
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Roboto-Italic.ttf
+          style: italic
+        - asset: assets/fonts/Roboto-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/Roboto-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Roboto-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Roboto-Thin.ttf
+          weight: 100

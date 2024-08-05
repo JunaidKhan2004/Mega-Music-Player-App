@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "107211404763",
+    "project_id": "mega-music-player-app",
+    "storage_bucket": "mega-music-player-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:107211404763:android:fc8fce60d5acd30782e3fe",
+        "android_client_info": {
+          "package_name": "com.mega.musicplayer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBR_A5ymxWa-Ce_H8ntzfuVadAyPhUZXC8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
