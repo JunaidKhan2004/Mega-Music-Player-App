@@ -1,59 +1,84 @@
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
-import 'package:mega_music_player_app/widgets/bottomRadiusContainer_widget.dart'; // Add the just_audio package to your pubspec.yaml
+import 'package:on_audio_query/on_audio_query.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class MusicPlayerScreen extends StatefulWidget {
-  final String? musicTitle;
-
-  const MusicPlayerScreen({Key? key, this.musicTitle}) : super(key: key);
-
   @override
   _MusicPlayerScreenState createState() => _MusicPlayerScreenState();
 }
 
 class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
-  late AudioPlayer _audioPlayer;
+  final OnAudioQuery audioQuery = OnAudioQuery();
+  List<SongModel> songs = [];
+  AudioPlayer audioPlayer = AudioPlayer();
+  SongModel? currentSong;
 
   @override
   void initState() {
     super.initState();
-    _audioPlayer = AudioPlayer();
-    _playMusic();
+    requestPermissions();
   }
 
-  Future<void> _playMusic() async {
-    final url =
-        'https://your_firebase_storage_url/musics/${widget.musicTitle}.mp3'; // Update with your storage URL
-    await _audioPlayer.setUrl(url);
-    _audioPlayer.play();
+  Future<void> requestPermissions() async {
+    if (await Permission.storage.request().isGranted) {
+      fetchSongs();
+    }
   }
 
-  @override
-  void dispose() {
-    _audioPlayer.dispose();
-    super.dispose();
+  Future<void> fetchSongs() async {
+    List<SongModel> fetchedSongs = await audioQuery.querySongs();
+    setState(() {
+      songs = fetchedSongs;
+    });
+  }
+
+  void playSong(SongModel song) async {
+    await audioPlayer.play(DeviceFileSource(song.data));
+    setState(() {
+      currentSong = song;
+    });
+  }
+
+  void stopSong() async {
+    await audioPlayer.stop();
+    setState(() {
+      currentSong = null;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Center(
-                child: BottomRadiusCard(
-                  height: MediaQuery.of(context).size.height / 1.9,
-                  width: MediaQuery.of(context).size.width / 1.4,
-                  title: widget.musicTitle ?? 'Loading....',
-                ),
-              ),
-              const SizedBox(height: 10),
-            ],
+      appBar: AppBar(
+        title: Text('Music Player'),
+      ),
+      body: Column(
+        children: [
+          currentSong != null
+              ? ListTile(
+                  title: Text(currentSong!.title),
+                  subtitle: Text(currentSong!.artist ?? 'Unknown Artist'),
+                  trailing: IconButton(
+                    icon: Icon(Icons.stop),
+                    onPressed: stopSong,
+                  ),
+                )
+              : Container(),
+          Expanded(
+            child: ListView.builder(
+              itemCount: songs.length,
+              itemBuilder: (context, index) {
+                final song = songs[index];
+                return ListTile(
+                  title: Text(song.title),
+                  subtitle: Text(song.artist ?? 'Unknown Artist'),
+                  onTap: () => playSong(song),
+                );
+              },
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

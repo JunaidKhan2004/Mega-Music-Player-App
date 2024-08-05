@@ -37,18 +37,18 @@ class BottomRadiusCard extends StatelessWidget {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: NetworkImage(imagePath ??
-                    'https://i.pinimg.com/564x/e5/cb/f0/e5cbf000b7a10b9bd096e3f86fd61f21.jpg'),
+                    'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
                 fit: BoxFit.cover,
               ),
             ),
           ),
           Positioned(
-            bottom: 10,
+            bottom: 0,
             left: 0,
             right: 0,
             child: Container(
-              height: height != null ? height! * 0.3 : 90.0,
-              decoration: BoxDecoration(
+              height: height != null ? height! * 0.2 : 90.0,
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [Colors.black, Colors.transparent],
                   begin: Alignment.bottomCenter,

@@ -39,15 +39,6 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  void _onMusicTap(String musicTitle) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => MusicPlayerScreen(musicTitle: musicTitle),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           return Card(
                             color: AppColors.backgroundDark,
                             child: ListTile(
-                              onTap: () => _onMusicTap(_musicTitles[index]),
+                              onTap: () {},
                               leading: const Icon(
                                 Icons.music_note,
                                 color: AppColors.textOnRed,
